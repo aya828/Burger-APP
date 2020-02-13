@@ -15,11 +15,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Set Handlebars as the default templating engine.
-// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-// app.set("view engine", "handlebars");
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // Static directory
 app.use(express.static("public"));
+
+app.get('/', function(req, res) {
+  res.json(path.join(__dirname, "views"));
+});
 
 // Routes
 // =============================================================
