@@ -11,19 +11,19 @@ let PORT = process.env.PORT || 8080; //Establish local & hosted server PORT expr
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.json());
 //SHOULD BE SETTING VIEW PATH TO __dirname/app/views (right now it justlooking for __dirname/views)
-let viewsPath = path.join(__dirname, "/app", "/views")
+let viewsPath = path.join(__dirname, "/app/views")
 app.set('views', viewsPath);
 // Allows app to implement handlebars to template data
 app.engine(".handlebars", exphbs({ defaultLayout: "main" })); 
 app.set("view engine", ".handlebars");
 
-console.log(path.join(__dirname, "/app", "/views"))
+
 //Incorporate static directory
 app.use(express.static("./app/assets"));
 
-app.get('/', function(req, res) {
-  res.render( "index" );
-})
+// app.get('/', function(req, res) {
+  
+// })
 //**********ROUTES************************************************************************************//
 //Links out to route handler
 // require("./app/routes/html-routes")(app);

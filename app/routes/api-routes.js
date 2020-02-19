@@ -18,11 +18,11 @@ module.exports = function (app) {
   
   app.get('/', function (req, res) {
     console.log('home page');
-    // db.Burger.findAll({}).then((data)=>{
-    //   let formattedData = data;
-    //   console.log(formattedData);
-    //   res.render('index', {Burgers: formattedData})
-    // })
+    db.Burger.findAll({}).then((data)=>{
+      let formattedData = data;
+      console.log(formattedData);
+      res.render('index', {Burgers: formattedData})
+    })
   });
 
   app.post("/api/burger", (req, res) => {
