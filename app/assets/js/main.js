@@ -4,7 +4,7 @@ $(document).ready(function(){
 
   // get DOM elements
   const $submitBtn = $('#submitBtn');
-  const $addBtn = $('.add-btn');
+  const $addBtn = $('<button>');
 
   $submitBtn.on('click', function(e) {
     e.preventDefault();
@@ -16,15 +16,28 @@ $(document).ready(function(){
       url: '/api/burger',
       method: 'POST',
       data: {
-        newBurger
+        name: newBurger
       }
     }).then(function(response) {
       console.log(response);
       console.log("adding burger");
-      // location.reload();
+      location.reload();
       // reload the window
     });
   });
+
+  $("#devourBtn").on("click", function(e) {
+    e.preventDefault();
+    console.log("working");
+    $.ajax({
+      url: '/api/burger',
+      method: 'GET',
+      data: {
+      }
+    }).then(function(res){
+      console.log(res);
+    })
+  })
 
   // function addBurger() {
   //   $.ajax({

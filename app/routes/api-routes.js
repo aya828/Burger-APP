@@ -3,6 +3,18 @@ let db = require("../models");
 
 module.exports = function (app) {
 
+  app.get('/', function (req, res) {
+    console.log('home page');
+    let burgers = [];
+
+    db.Burger.findAll({}).then((data)=>{
+
+      data.map(item => burgers.push(item.dataValues));
+      //let formattedData = data;
+      //console.log(formattedData);
+      res.render('index', { Burgers: burgers})
+    })
+  });
   //GET ALL RECIPES VIEW
   // app.get('/api/burger', function (req, res) {
   //   db.Burger.findAll({}).then((data)=>{
@@ -16,19 +28,25 @@ module.exports = function (app) {
   //   res.render("burger");
   // });
   
-  app.get('/', function (req, res) {
-    console.log('home page');
-    db.Burger.findAll({}).then((data)=>{
-      let formattedData = data;
-      console.log(formattedData);
-      res.render('index', {Burgers: formattedData})
-    })
-  });
+  // app.get('/', function (req, res) {
+  //   console.log('home page');
+  //   let burgers = [];
+
+  //   db.Burger.findAll({}).then((data) => {
+  //     data.map(item => burgers.push(item.dataValues));
+
+  //     res.render('index', { Burgers: burgers })
+  //   })
+  // });
+
+  app.get("/api/burger", (req,res) => {
+    console.log(res.Burger);
+  })
 
   app.post("/api/burger", (req, res) => {
     console.log(req.body);
     db.Burger.create({
-      burger_name: req.body.newBurger,
+      burger_name: req.body.name,
       devoured: false
     }).then((newBurger) => {
       res.json({result: "success"});

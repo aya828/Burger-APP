@@ -2,11 +2,12 @@
 
 <div>
   <ul class="notDevoured">
+    {{#each Burgers}}
     <li class="burger">
-      {{#each Burgers}}
       {{this.burger_name}}
-      {{/each}}
+      <button class="btn btn-outline-secondary" data-trigger="save" id="devourBtn">Devour</button>
     </li>
+    {{/each}}
   </ul>
 </div>
 
