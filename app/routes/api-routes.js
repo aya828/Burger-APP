@@ -16,24 +16,21 @@ module.exports = function (app) {
     res.render("burger");
   });
   
-  //POST NEW RECIPE
-  // app.post("/api/burger", (req, res) => {
-  //   console.log(req.body);
-  //   db.Todo.create({
-  //     name: req.body.whatever,
-  //     main_alc: req.body.whatever,
-  //     main_oz: req.body.whatever,
-  //     ing1: req.body.whatever,
-  //     ing2: req.body.whatever,
-  //     ing3: req.body.whatever,
-  //     ing4: req.body.whatever,
-  //     ing5: req.body.whatever,
-  //     ing6: req.body.whatever,
-  //     instructions: req.body.whatever
+  app.get('/', function (req, res) {
+    db.Burger.findAll({}).then((data)=>{
+      let formattedData = data;
+      res.render('/index', {Burgers: formattedData})
+    })
+  });
 
-  //   }).then((newRecipe) => {
-  //     console.log(newRecipe);
-  //     // res.json(dbTodo);
-  //   });
-  // });
+  app.post("/api/burger", (req, res) => {
+    console.log(req.body);
+    db.Burger.create({
+      burger_name: req.body.newBurger,
+      devoured: false
+    }).then((newBurger) => {
+      console.log(newBurger);
+      // res.json(dbTodo);
+    });
+  });
 }

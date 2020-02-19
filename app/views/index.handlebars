@@ -1,6 +1,19 @@
 {{!-- <img src="/hw11/app/assets/images/burger.png" width="300px" /> --}}
 
+<div>
+  <ul class="notDevoured">
+    <li class="burger">
+      {{#each Burgers}}
+      {{this.burger_name}}
+      {{/each}}
+    </li>
+  </ul>
+</div>
 
+<div>
+  <ul class="devoured">
+  </ul>
+</div>
 
 <div class="input-group mb-3">
   <input type="text" id="newBurger" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">

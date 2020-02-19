@@ -21,10 +21,22 @@ $(document).ready(function(){
     }).then(function(response) {
       console.log(response);
       console.log("adding burger");
+      addBurger();
     });
   });
 
-  $addBtn.on('click', function() {
-    //go to forms page
-  });
+  function addBurger() {
+    $.ajax({
+      url: 'http://localhost:8080/api/burger',
+      method: 'GET',
+      data: {
+        burger_name
+      }
+    }).then(function(response) {
+      console.log("working");
+      const line = $(".burger");
+      line.append(response);
+    })
+  }
+
 })
