@@ -13,7 +13,7 @@ $(document).ready(function(){
     let newBurger = $("#newBurger").val();
 
     $.ajax({
-      url: 'http://localhost:8080/api/burger',
+      url: '/api/burger',
       method: 'POST',
       data: {
         newBurger
@@ -21,22 +21,21 @@ $(document).ready(function(){
     }).then(function(response) {
       console.log(response);
       console.log("adding burger");
-      addBurger();
+      // location.reload();
+      // reload the window
     });
   });
 
-  function addBurger() {
-    $.ajax({
-      url: 'http://localhost:8080/api/burger',
-      method: 'GET',
-      data: {
-        burger_name
-      }
-    }).then(function(response) {
-      console.log("working");
-      const line = $(".burger");
-      line.append(response);
-    })
-  }
+  // function addBurger() {
+  //   $.ajax({
+  //     url: 'http://localhost:8080/',
+  //     method: 'GET',
+  //     data: {
+  //       burger_name
+  //     }
+  //   }).then(function(response) {
+  //     console.log(response);
+  //   })
+  // }
 
 })

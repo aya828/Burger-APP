@@ -26,7 +26,7 @@ app.get('/', function(req, res) {
 })
 //**********ROUTES************************************************************************************//
 //Links out to route handler
-require("./app/routes/html-routes")(app);
+// require("./app/routes/html-routes")(app);
 require("./app/routes/api-routes")(app);
 //**********SYNC-DB***********************************************************************************//
 
