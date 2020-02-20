@@ -30,15 +30,20 @@ $(document).ready(function(){
   // Get from index "this.burger_name", PUT into different part of page. Take Devour=true to Devour=false
   $("#devourBtn").on("click", function(e) {
     e.preventDefault();
-    console.log("working");
+    let devouredBurger = e.target.name;
+    console.log(devouredBurger);
     $.ajax({
-      url: '/api/burger',
+      url: '/api/burger/:id',
       method: 'PUT',
       data: {
+
       }
     }).then(function(res){
       console.log(res);
-      location.reload();
+      
+      console.log(this.burger);
+      this.devour = true;
+      // location.reload();
     })
   })
 

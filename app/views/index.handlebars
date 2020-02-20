@@ -5,7 +5,7 @@
     {{#each Burgers}}
     <li class="burger">
       {{this.burger_name}}
-      <button class="btn btn-outline-secondary" data-trigger="save" id="devourBtn">Devour</button>
+      <button name={{this.id}} class="btn btn-outline-secondary" data-trigger="save" id="devourBtn">Devour</button>
     </li>
     {{/each}}
   </ul>
