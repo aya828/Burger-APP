@@ -1,4 +1,36 @@
 body {
   background-size: cover;
   background-color: darkkhaki;
+  background-image: url("/images/burger.jpg");
+}
+
+#title {
+  text-align: center;
+  color: #199FC3;
+  font-family: 'Knewave';
+  font-weight: bolder;
+  font-size: 100px;
+}
+
+.notDevoured {
+  color: black;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.devoured {
+  color: black;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.btn {
+  color: white;
+  font-weight: bold;
+}
+
+#submitBtn {
+  background-color: #199FC3;
+  color: white;
+  font-weight: bold;
 }
