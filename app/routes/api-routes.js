@@ -4,49 +4,30 @@ let db = require("../models");
 module.exports = function (app) {
 
   app.get('/', function (req, res) {
-    console.log('home page');
-    let burgers = [];
 
-    db.Burger.findAll({}).then((data)=>{
-
-      data.map(item => burgers.push(item.dataValues));
-      //let formattedData = data;
-      //console.log(formattedData);
-      res.render('index', { Burgers: burgers})
+    db.Burger.findAll({}).then((burger)=>{
+      let uneaten = [];
+      let eaten = [];
+      burger.forEach(burger => {
+        if(!burger.devoured) {
+          uneaten.push({ id: burger.id, name: burger.burger_name });
+        } else {
+          eaten.push({ id: burger.id, name: burger.burger_name });
+        }
+      })
+      res.render('index', {burgers: { eaten: eaten, uneaten: uneaten }})
     })
   });
-  //GET ALL RECIPES VIEW
-  // app.get('/api/burger', function (req, res) {
-  //   db.Burger.findAll({}).then((data)=>{
-  //     console.log(data);
-  //     //res.render(recipes)
-  //   })
-  // });
- 
-  // // GET SPECIFIC RECIPE
-  // app.get('/api/burger', function (req, res) {
-  //   res.render("burger");
-  // });
-  
-  // app.get('/', function (req, res) {
-  //   console.log('home page');
-  //   let burgers = [];
-
-  //   db.Burger.findAll({}).then((data) => {
-  //     data.map(item => burgers.push(item.dataValues));
-
-  //     res.render('index', { Burgers: burgers })
-  //   })
-  // });
 
   app.put("/api/burger/:id", (req,res) => {
     db.Burger.update(
-      {devoured: true},
+      {devoured: 1},
       {where: {
         id: req.params.id
       }}
-    ).then(function(error, data) {
+    ).then(function(data) {
       console.log(data);
+      res.json({result: "success"});
     })
   })
 
@@ -54,7 +35,7 @@ module.exports = function (app) {
     console.log(req.body);
     db.Burger.create({
       burger_name: req.body.name,
-      devoured: false
+      devoured: 0
     }).then((newBurger) => {
       res.json({result: "success"});
     });

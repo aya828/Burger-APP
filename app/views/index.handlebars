@@ -2,10 +2,10 @@
 
 <div>
   <ul class="notDevoured">
-    {{#each Burgers}}
+    {{#each burgers.uneaten}}
     <li class="burger">
-      {{this.burger_name}}
-      <button name={{this.id}} class="btn btn-outline-secondary" data-trigger="save" id="devourBtn">Devour</button>
+      {{this.name}}
+      <button name={{this.id}} class="btn btn-outline-secondary devourBtn" data-trigger="save">Devour</button>
     </li>
     {{/each}}
   </ul>
@@ -13,6 +13,11 @@
 
 <div>
   <ul class="devoured">
+    {{#each burgers.eaten}}
+    <li class="burger">
+      {{this.name}}
+    </li>
+    {{/each}}
   </ul>
 </div>
 

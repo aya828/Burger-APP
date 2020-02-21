@@ -1,4 +1,6 @@
 $(document).ready(function(){
+  console.log("reload");
+
   //TODO ajax calls
   //TODO onbuttonclicks
 
@@ -28,35 +30,19 @@ $(document).ready(function(){
  
 
   // Get from index "this.burger_name", PUT into different part of page. Take Devour=true to Devour=false
-  $("#devourBtn").on("click", function(e) {
+  $(".devourBtn").on("click", function(e) {
     e.preventDefault();
-    let devouredBurger = e.target.name;
-    console.log(devouredBurger);
+    let burgerId = $(this).attr("name");
+    console.log(burgerId);
     $.ajax({
-      url: '/api/burger/:id',
+      url: '/api/burger/' + burgerId,
       method: 'PUT',
-      data: {
-
-      }
     }).then(function(res){
       console.log(res);
-      
-      console.log(this.burger);
-      this.devour = true;
-      // location.reload();
-    })
+      location.reload();
+    }).fail(function(err){
+      console.log(err);
+    });
   })
-
-  // function addBurger() {
-  //   $.ajax({
-  //     url: 'http://localhost:8080/',
-  //     method: 'GET',
-  //     data: {
-  //       burger_name
-  //     }
-  //   }).then(function(response) {
-  //     console.log(response);
-  //   })
-  // }
 
 })
