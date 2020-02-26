@@ -14,7 +14,7 @@ app.use(express.json());
 let viewsPath = path.join(__dirname, "/app/views")
 app.set('views', viewsPath);
 // Allows app to implement handlebars to template data
-app.engine(".handlebars", exphbs({ defaultLayout: "main" })); 
+app.engine("handlebars", exphbs({ defaultLayout: "main" })); 
 app.set("view engine", ".handlebars");
 
 
